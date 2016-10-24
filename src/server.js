@@ -2,6 +2,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import path from 'path'
+import chalk = from'chalk'
 import mkdir from './library/mkdir'
 import options from './library/options'
 
@@ -22,7 +23,7 @@ app.post('/', (req, res) => {
     // Html: req.body['Message.Body.Html.Data']
     // Text: req.body['Message.Body.Text.Data']
   }
-  res.send('Were up\n')
+  res.status(200).send('Were up\n')
 })
 
 app.listen(3001)
