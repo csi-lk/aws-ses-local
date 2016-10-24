@@ -19,14 +19,16 @@ app.post('/', (req, res) => {
   if (req.body.Action === 'SendEmail') {
     log(`
     ${chalk.green('Email Recieved')}
-      ${chalk.blue('From:')} ${req.body.Source},
-      ${chalk.blue('To:')} ${req.body['Destination.ToAddresses.member.1']},
-      ${chalk.blue('Subject:')} ${req.body['Message.Subject.Data']},
+      ${chalk.blue('From:')} ${req.body.Source}
+      ${chalk.blue('To:')} ${req.body['Destination.ToAddresses.member.1']}
+      ${chalk.blue('Subject:')} ${req.body['Message.Subject.Data']}
     `)
     let dir = `${options.outputDir}/${dateTime.slice(0, 10)}/${dateTime.slice(11, 22)}`
+    let headers = `Subject: ${req.body['Message.Subject.Data']}\nDestination: ${req.body['Destination.ToAddresses.member.1']}\nSource: ${req.body.Source}`
     mkdir(path.join(dir))
     fs.writeFileSync(`${dir}/body.html`, req.body['Message.Body.Html.Data']);
     fs.writeFileSync(`${dir}/body.txt`, req.body['Message.Body.Text.Data']);
+    fs.writeFileSync(`${dir}/headers.txt`, headers);
   }
   res.status(200).send('Were up\n')
 })
