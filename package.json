@@ -32,7 +32,9 @@
   "dependencies": {
     "babel-register": "^6.16.3",
     "body-parser": "^1.15.2",
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "mkdirp": "^0.5.1",
+    "nopt": "^3.0.6"
   },
   "scripts": {
     "lint": "eslint -c .eslintrc src/*.js",
