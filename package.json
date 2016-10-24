@@ -1,0 +1,37 @@
+{
+  "name": "aws-ses-local",
+  "version": "0.0.1",
+  "description": "Local Amazon Simple Email Service Server written in Node",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Si1kIfY/aws-ses-local"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-core": "^6.13.2",
+    "babel-eslint": "^6.1.2",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-lodash": "^3.2.8",
+    "babel-plugin-transform-runtime": "^6.12.0",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-stage-0": "^6.5.0",
+    "chai": "^3.5.0",
+    "eslint": "^3.2.2",
+    "eslint-config-airbnb": "^10.0.0",
+    "eslint-import-resolver-webpack": "^0.4.0",
+    "eslint-loader": "^1.5.0",
+    "eslint-plugin-import": "^1.14.0",
+    "eslint-plugin-jsx-a11y": "^2.2.0",
+    "eslint-plugin-react": "^6.4.1",
+    "isparta": "^4.0.0",
+    "istanbul": "^0.4.5",
+    "json-loader": "^0.5.4",
+    "mocha": "^3.1.2",
+    "nyc": "^8.3.2",
+  },
+  "scripts": {
+    "lint": "eslint -c .eslintrc src/*/*.js",
+    "test": "IS_OFFLINE=true nyc --require babel-core/register mocha \\ $(find src -name '*spec.js')"
+  },
+  "author": "Callum Silcock"
+}
