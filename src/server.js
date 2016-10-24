@@ -30,4 +30,6 @@ app.post('/', (req, res) => {
 
 app.listen(options.port)
 
-console.log('Listening on port 3001...')
+log(`
+  ${chalk.green('Listening on port:')} ${options.port}
+`)
