@@ -38,7 +38,7 @@
     "nopt": "^3.0.6"
   },
   "scripts": {
-    "lint": "eslint -c .eslintrc src/*.js",
+    "lint": "eslint -c .eslintrc 'src/**/*.js'",
     "test": "IS_OFFLINE=true nyc --require babel-core/register mocha \\ $(find src -name '*spec.js')",
     "build": "babel -w src/ -d build -s"
   }

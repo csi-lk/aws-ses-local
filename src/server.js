@@ -1,24 +1,26 @@
-// Import 
+// Import node libs
 import express from 'express'
 import bodyParser from 'body-parser'
 import path from 'path'
-import chalk = from'chalk'
+import chalk from 'chalk'
+// Import local libs
 import mkdir from './library/mkdir'
 import options from './library/options'
 
 const app = express()
-const args = process.argv.slice(2);
+const log = console.log
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.post('/', (req, res) => {
   if (req.body.Action === 'SendEmail') {
-    console.log({
-      From: req.body.Source,
-      To: req.body['Destination.ToAddresses.member.1'],
-      Subject: req.body['Message.Subject.Data'],
-    })
+    log(`
+    ${chalk.green('Email Recieved')}
+      ${chalk.blue('From:')} ${req.body.Source},
+      ${chalk.blue('To:')} ${req.body['Destination.ToAddresses.member.1']},
+      ${chalk.blue('Subject:')} ${req.body['Message.Subject.Data']},
+    `)
     mkdir(path.join(options.outputDir || './output'))
     // Html: req.body['Message.Body.Html.Data']
     // Text: req.body['Message.Body.Text.Data']

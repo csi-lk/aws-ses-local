@@ -2,13 +2,13 @@ import nopt from 'nopt'
 import path from 'path'
 
 const opts = {
-  outputDir : path
+  outputDir: path,
 }
 const shortOpts = {
-  o : ['--outputDir']
+  o: ['--outputDir'],
 }
 const output = nopt(opts, shortOpts, process.argv, 2)
 
-output.outputDir = (output.outputDir === undefined) ? './output' : output.outputDir;
+output.outputDir = (output.outputDir === undefined) ? './output' : output.outputDir
 
 export default output
