@@ -28,6 +28,6 @@ app.post('/', (req, res) => {
   res.status(200).send('Were up\n')
 })
 
-app.listen(3001)
+app.listen(options.port)
 
 console.log('Listening on port 3001...')
