@@ -3,11 +3,11 @@ import path from 'path'
 
 const opts = {
   outputDir: path,
-  port: Number
+  port: Number,
 }
 const shortOpts = {
   o: ['--outputDir'],
-  p: ['--port']
+  p: ['--port'],
 }
 const output = nopt(opts, shortOpts, process.argv, 2)
 
