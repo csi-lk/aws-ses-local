@@ -1,0 +1,67 @@
+{
+    "parser": "babel-eslint",
+    "extends": "airbnb",
+    "rules": {
+        // http://eslint.org/docs/rules/semi
+        // no semi-colons (YOLO) .. if you really want semicolons, remove this rule and run
+        // '.\node_modules\.bin\eslint --fix src' from the app root to re-add
+        "semi": [
+            2,
+            "never"
+        ],
+        // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
+        // arrow functions in a JSX prop will create a brand new function on every single render
+        // so disallow for a perf boost
+        "react/jsx-no-bind": [
+            2,
+            {
+                "ignoreRefs": true,
+                "allowArrowFunctions": false
+            }
+        ],
+        // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-filename-extension.md
+        // allow js and jsx file extensions.
+        "react/jsx-filename-extension": [
+            1, {
+                "extensions": [
+                    ".js",
+                    ".jsx"
+                ]
+            }
+        ],
+        // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-extraneous-dependencies.md
+        "import/no-extraneous-dependencies": [
+            "error", {
+                "devDependencies": true,
+                "optionalDependencies": true,
+                "peerDependencies": true
+            }
+        ],
+        // http://eslint.org/docs/rules/linebreak-style
+        "linebreak-style": [
+            "off"
+        ],
+        "max-len": [
+            2,
+            {
+                "code": 1000
+            }
+        ],
+        "eol-last": [
+            2,"never"
+        ]
+    },
+    "env": {
+        "browser": true,
+        "mocha": true
+    },
+    "settings": {
+    },
+    "globals": {
+        "API_URI": true,
+        "ENVIRONMENT_TYPE": true,
+        "APPLICATION_VERSION": true,
+        "__SEQ_URI__": true,
+        "__SEQ_API_KEY__": true
+    }
+}
