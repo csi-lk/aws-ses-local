@@ -9,10 +9,10 @@ import options from './library/options'
 
 const app = express()
 const log = console.log
+const dateTime = new Date().toISOString()
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-
 app.post('/', (req, res) => {
   if (req.body.Action === 'SendEmail') {
     log(`
@@ -21,7 +21,7 @@ app.post('/', (req, res) => {
       ${chalk.blue('To:')} ${req.body['Destination.ToAddresses.member.1']},
       ${chalk.blue('Subject:')} ${req.body['Message.Subject.Data']},
     `)
-    mkdir(path.join(options.outputDir || './output'))
+    mkdir(path.join(`${options.outputDir}/${dateTime.slice(0, 10)}/${dateTime.slice(11, 22)}`))
     // Html: req.body['Message.Body.Html.Data']
     // Text: req.body['Message.Body.Text.Data']
   }
