@@ -36,27 +36,25 @@ app.post('/', (req, res) => {
     const fullDir = `${dateDir}/${dateTime.slice(11, 22).replace(/:\s*/g, '.')}`
     const headers = `Subject: ${req.body['Message.Subject.Data']}\nDestination: ${req.body['Destination.ToAddresses.member.1']}\nSource: ${req.body.Source}`
     try {
-      req.body['Message.Body.Html.Data'],
-      req.body['Message.Body.Text.Data']
-    } catch (err) {
-      console.log(err)
-    }
-    try {
-      mkdir(path.join(dateDir))
-      mkdir(path.join(fullDir))
-      log(`  📬  ${chalk.green('Email Recieved')}
-        ${chalk.blue('From:')} ${req.body.Source}
-        ${chalk.blue('To:')} ${req.body['Destination.ToAddresses.member.1']}
-        ${chalk.blue('Subject:')} ${req.body['Message.Subject.Data']}
-        ${chalk.blue('Html Email:')} ${process.cwd()}/${path.join(fullDir)}/body.html
-        ${chalk.blue('Text Email:')} ${process.cwd()}/${path.join(fullDir)}/body.txt
-      `)
-      fs.writeFileSync(`${fullDir}/body.html`, req.body['Message.Body.Html.Data'])
-      fs.writeFileSync(`${fullDir}/body.txt`, req.body['Message.Body.Text.Data'])
-      fs.writeFileSync(`${fullDir}/headers.txt`, headers)
-      res.status(200).send(
-        successTemplate.replace('{{message}}', `${process.cwd()}/${path.join(fullDir)}/body.html`)
-      )
+      if(req.body.Source, req.body['Message.Subject.Data'], req.body['Message.Body.Html.Data'], req.body['Message.Body.Text.Data'], req.body['Destination.ToAddresses.member.1']){
+        mkdir(path.join(dateDir))
+        mkdir(path.join(fullDir))
+        log(`  📬  ${chalk.green('Email Recieved')}
+          ${chalk.blue('From:')} ${req.body.Source}
+          ${chalk.blue('To:')} ${req.body['Destination.ToAddresses.member.1']}
+          ${chalk.blue('Subject:')} ${req.body['Message.Subject.Data']}
+          ${chalk.blue('Html Email:')} ${process.cwd()}/${path.join(fullDir)}/body.html
+          ${chalk.blue('Text Email:')} ${process.cwd()}/${path.join(fullDir)}/body.txt
+        `)
+        fs.writeFileSync(`${fullDir}/body.html`, req.body['Message.Body.Html.Data'])
+        fs.writeFileSync(`${fullDir}/body.txt`, req.body['Message.Body.Text.Data'])
+        fs.writeFileSync(`${fullDir}/headers.txt`, headers)
+        res.status(200).send(
+          successTemplate.replace('{{message}}', `${process.cwd()}/${path.join(fullDir)}/body.html`)
+        )
+      } else {
+        throw 'One or more required fields was not sent'
+      }
     } catch (err) {
       log(`   ${chalk.red('Error Occured:')} ${err}`)
       res.status(500).send(
