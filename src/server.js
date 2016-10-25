@@ -24,7 +24,6 @@ app.post('/', (req, res) => {
       ${chalk.blue('Subject:')} ${req.body['Message.Subject.Data']}
     `)
     const dir = `${options.outputDir}/${dateTime.slice(0, 10)}/${dateTime.slice(11, 22).replace(/:\s*/g, '.')}`
-    console.log(`${dateTime.slice(11, 22)}`)
     const headers = `Subject: ${req.body['Message.Subject.Data']}\nDestination: ${req.body['Destination.ToAddresses.member.1']}\nSource: ${req.body.Source}`
     mkdir(path.join(dir))
     fs.writeFileSync(`${dir}/body.html`, req.body['Message.Body.Html.Data'])
@@ -34,7 +33,7 @@ app.post('/', (req, res) => {
       <?xml version="1.0" encoding="UTF-8"?>
       <SendEmailResponse xmlns="http://ses.amazonaws.com/doc/2010-12-01/">
         <SendEmailResult>
-          <MessageId>${process.cwd() + path.join(dir) + '/body.html'}</MessageId>
+          <MessageId>${process.cwd()}/${path.join(dir)}/body.html</MessageId>
         </SendEmailResult>
       </SendEmailResponse>
     `)
