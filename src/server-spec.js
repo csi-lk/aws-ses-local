@@ -40,4 +40,22 @@ describe('/POST email', () => {
         done()
       })
   })
+  it('should fail if one param is not sent', (done) => {
+    chai.request(server)
+      .post('/')
+      .send({
+        Action: 'SendEmail',
+        'Message.Body.Html.Data': htmlEmail,
+        'Message.Body.Text.Data': textEmail,
+        'Message.Subject.Data': emailSubject,
+        Source: fromEmail,
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(500)
+        const response = new xmldoc.XmlDocument(res.text)
+        expect(response.valueWithPath('Code')).to.eq('MessageRejected')
+        expect(response.valueWithPath('Message')).to.eq('One or more required fields was not sent')
+        done()
+      })
+  })
 })
