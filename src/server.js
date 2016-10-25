@@ -11,6 +11,8 @@ import rmdir from './library/rmdir'
 
 const app = express()
 const log = console.log
+const successTemplate = fs.readFileSync(`${__dirname}/templates/success.xml`, { encoding: 'utf-8' });
+const errorTemplate = fs.readFileSync(`${__dirname}/templates/error.xml`, { encoding: 'utf-8' });
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -45,14 +47,7 @@ app.post('/', (req, res) => {
     fs.writeFileSync(`${fullDir}/body.html`, req.body['Message.Body.Html.Data'])
     fs.writeFileSync(`${fullDir}/body.txt`, req.body['Message.Body.Text.Data'])
     fs.writeFileSync(`${fullDir}/headers.txt`, headers)
-    res.status(200).send(`
-      <?xml version="1.0" encoding="UTF-8"?>
-      <SendEmailResponse xmlns="http://ses.amazonaws.com/doc/2010-12-01/">
-        <SendEmailResult>
-          <MessageId>${process.cwd()}/${path.join(fullDir)}/body.html</MessageId>
-        </SendEmailResult>
-      </SendEmailResponse>
-    `)
+    res.status(200).send(successTemplate.replace('{{message}}', `${process.cwd()}/${path.join(fullDir)}/body.html`))
   }
 })
 

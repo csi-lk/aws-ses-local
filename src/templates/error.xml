@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Error>
+  <Code>{{code}}</Code>
+  <Message>{{message}}</Message>
+</Error>
