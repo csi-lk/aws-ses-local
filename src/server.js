@@ -36,6 +36,12 @@ app.post('/', (req, res) => {
     const fullDir = `${dateDir}/${dateTime.slice(11, 22).replace(/:\s*/g, '.')}`
     const headers = `Subject: ${req.body['Message.Subject.Data']}\nDestination: ${req.body['Destination.ToAddresses.member.1']}\nSource: ${req.body.Source}`
     try {
+      req.body['Message.Body.Html.Data'],
+      req.body['Message.Body.Text.Data']
+    } catch (err) {
+      console.log(err)
+    }
+    try {
       mkdir(path.join(dateDir))
       mkdir(path.join(fullDir))
       log(`  📬  ${chalk.green('Email Recieved')}
