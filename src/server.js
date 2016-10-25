@@ -61,3 +61,5 @@ app.post('/', (req, res) => {
 })
 
 app.listen(options.port)
+
+export default app
