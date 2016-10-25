@@ -28,6 +28,8 @@ describe('/POST email', () => {
         expect(res).to.have.status(200)
         expect(json.SendEmailResponse.SendEmailResult).should.have.property('MessageId')
         expect(fs.readFileSync(json.SendEmailResponse.SendEmailResult.MessageId, 'utf8')).to.eq(htmlEmail)
+        //check text email
+        //check headers
         done()
       })
   })
