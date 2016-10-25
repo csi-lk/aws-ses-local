@@ -1,7 +1,0 @@
-Confirm your email to start rolling \n\n
-You're receiving this email because you've entered your email address \n
-with On A Roll 21, if this is not you please ignore. \n\n
-
-Verification Link: http://onaroll21.com/verification.html?userId=64afc012-7420-4c43-925e-7868330e705f&verToken=9534335a-f56a-43c9-9f73-36a3308a1af2&email=aefaegegaesge@simulator.amazonses.com \n\n
-
-If the link isn't working try copy/pasting it into your browser \n

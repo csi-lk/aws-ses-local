@@ -38,3 +38,6 @@ jspm_packages
 
 # Build Dir
 build
+
+# Output Dir
+output

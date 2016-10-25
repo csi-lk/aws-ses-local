@@ -30,7 +30,14 @@ app.post('/', (req, res) => {
     fs.writeFileSync(`${dir}/body.txt`, req.body['Message.Body.Text.Data'])
     fs.writeFileSync(`${dir}/headers.txt`, headers)
   }
-  res.status(200).send('Were up\n')
+  res.status(200).send(`
+    <?xml version="1.0" encoding="UTF-8"?>
+    <SendEmailResponse xmlns="http://ses.amazonaws.com/doc/2010-12-01/">
+      <SendEmailResult>
+        <MessageId>1</MessageId>
+      </SendEmailResult>
+    </SendEmailResponse>
+  `)
 })
 
 app.listen(options.port)
