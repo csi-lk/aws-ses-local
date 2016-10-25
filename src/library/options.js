@@ -4,12 +4,12 @@ import path from 'path'
 const opts = {
   outputDir: path,
   port: Number,
-  clean: Boolean
+  clean: Boolean,
 }
 const shortOpts = {
   o: ['--outputDir'],
   p: ['--port'],
-  c: ['--clean']
+  c: ['--clean'],
 }
 const output = nopt(opts, shortOpts, process.argv, 2)
 

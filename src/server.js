@@ -19,7 +19,7 @@ log(`
 ${chalk.inverse('  AWS Simple Email Service Local 📪  ')}
   ${chalk.green('Listening on port:')} ${options.port}`)
 
-if(options.clean !== undefined){
+if (options.clean !== undefined) {
   log(`  ${chalk.red('Cleaning directory:')} ${options.outputDir}`)
   rmdir(options.outputDir)
 }

@@ -1,10 +1,10 @@
 import fs from 'fs'
 
 const deleteFolderRecursive = path => {
-  if( fs.existsSync(path) ) {
-    fs.readdirSync(path).forEach((file, index) => {
+  if (fs.existsSync(path)) {
+    fs.readdirSync(path).forEach((file) => {
       const curPath = `${path}/${file}`
-      if(fs.lstatSync(curPath).isDirectory()) {
+      if (fs.lstatSync(curPath).isDirectory()) {
         deleteFolderRecursive(curPath)
       } else {
         fs.unlinkSync(curPath)
