@@ -1,10 +1,17 @@
 import chai, { expect } from 'chai'
 import chaiHttp from 'chai-http'
-import parser from 'xml2json'
+import xmldoc from 'xmldoc'
 import fs from 'fs'
 import server from './server'
 
 chai.use(chaiHttp)
+
+// describe('Runtime arguments', () => {
+//   it('should clean the output directory when called with --clean', (done) => {
+//     process.argv = ['--clean']
+//     chai.request(server)
+//   })
+// })
 
 describe('/POST email', () => {
   const toAddress = 'to@email.com'
@@ -12,7 +19,7 @@ describe('/POST email', () => {
   const textEmail = 'Text Email'
   const emailSubject = 'Email Subject 😊'
   const fromEmail = 'from@email.com'
-  it('it should succeed if email has all params', (done) => {
+  it('should succeed if email has all params', (done) => {
     chai.request(server)
       .post('/')
       .send({
@@ -24,12 +31,12 @@ describe('/POST email', () => {
         Source: fromEmail,
       })
       .end((err, res) => {
-        const json = parser.toJson(res.text, { object: true })
         expect(res).to.have.status(200)
-        expect(json.SendEmailResponse.SendEmailResult).should.have.property('MessageId')
-        expect(fs.readFileSync(json.SendEmailResponse.SendEmailResult.MessageId, 'utf8')).to.eq(htmlEmail)
-        //check text email
-        //check headers
+        const response = new xmldoc.XmlDocument(res.text)
+        const path = response.valueWithPath('SendEmailResult.MessageId')
+        expect(fs.readFileSync(path, 'utf8')).to.eq(htmlEmail)
+        expect(fs.readFileSync(path.replace('body.html','body.txt'), 'utf8')).to.eq(textEmail)
+        expect(fs.readFileSync(path.replace('body.html','headers.txt'), 'utf8')).to.eq(`Subject: ${emailSubject}\nDestination: ${toAddress}\nSource: ${fromEmail}`)
         done()
       })
   })
