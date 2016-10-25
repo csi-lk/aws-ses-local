@@ -23,7 +23,7 @@ app.post('/', (req, res) => {
       ${chalk.blue('To:')} ${req.body['Destination.ToAddresses.member.1']}
       ${chalk.blue('Subject:')} ${req.body['Message.Subject.Data']}
     `)
-    const dir = `${options.outputDir}/${dateTime.slice(0, 10)}/${dateTime.slice(11, 22)}`
+    const dir = `${options.outputDir}/${dateTime.slice(0, 10)}/${dateTime.slice(11, 22).replace(':', '.')}`
     const headers = `Subject: ${req.body['Message.Subject.Data']}\nDestination: ${req.body['Destination.ToAddresses.member.1']}\nSource: ${req.body.Source}`
     mkdir(path.join(dir))
     fs.writeFileSync(`${dir}/body.html`, req.body['Message.Body.Html.Data'])
