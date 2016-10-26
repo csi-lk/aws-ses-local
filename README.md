@@ -15,13 +15,13 @@ Creates local [Amazon Simple Email Service](https://aws.amazon.com/ses/) Server 
 # Installation
 
 ```
-npm install aws-ses-local
+npm install aws-ses-local -g
 ```
 
 # Running the server
 
 ```
-node build/server.js --outputDir output --port 9001 --clean
+aws-ses-local
 ```
 
 ## CLI Options
