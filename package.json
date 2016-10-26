@@ -1,6 +1,6 @@
 {
   "name": "aws-ses-local",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Callum Silcock",
   "description": "Local Amazon Simple Email Service Server written in Node",
   "repository": {
@@ -47,6 +47,6 @@
     "start": "node build/server.js"
   },
   "bin": {
-    "aws-ses-local": "build/server.js"
+    "aws-ses-local": "node build/server.js"
   }
 }
