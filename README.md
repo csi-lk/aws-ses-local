@@ -1,6 +1,6 @@
 # aws-ses-local
 
-[![Build Status](https://travis-ci.org/Si1kIfY/aws-ses-local.svg?branch=master)](https://travis-ci.org/Si1kIfY/aws-ses-local) [![npm package](https://www.npmjs.com/package/aws-ses-local)](https://img.shields.io/npm/v/aws-ses-local.svg) [![scrutinizer](https://scrutinizer-ci.com/g/Si1kIfY/aws-ses-local/)](https://img.shields.io/scrutinizer/g/Si1kIfY/aws-ses-local.svg) [![repo license](https://github.com/Si1kIfY/aws-ses-local/blob/master/LICENSE)](https://img.shields.io/github/license/Si1kIfY/aws-ses-local.svg)
+[![Build Status](https://travis-ci.org/Si1kIfY/aws-ses-local.svg?branch=master)](https://travis-ci.org/Si1kIfY/aws-ses-local) [![npm package](https://img.shields.io/npm/v/aws-ses-local.svg)](https://www.npmjs.com/package/aws-ses-local) [![scrutinizer](https://img.shields.io/scrutinizer/g/Si1kIfY/aws-ses-local.svg)](https://scrutinizer-ci.com/g/Si1kIfY/aws-ses-local/) [![repo license](https://img.shields.io/github/license/Si1kIfY/aws-ses-local.svg)](https://github.com/Si1kIfY/aws-ses-local/blob/master/LICENSE)
 
 Creates local [Amazon Simple Email Service](https://aws.amazon.com/ses/) Server for consuming requests sent by the API
 
