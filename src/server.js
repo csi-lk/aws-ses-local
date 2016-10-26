@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // Import node libs
 import express from 'express'
 import bodyParser from 'body-parser'
