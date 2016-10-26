@@ -27,10 +27,10 @@ node build/server.js --outputDir output --port 9001 --clean
 ## CLI Options
 
 | Option  | Short Option | Default | Description |
-| ------------- | ------------- |
+| --- | --- | --- | --- | 
 | `--outputDir` | `-o` | `./output` | Specify output directory |
 | `--port` | `-p` | `9001` | Specify port for server to run on |
-| `--clean` | `-c` | | Clean output directory (delete all contents) |
+| `--clean` | `-c` | none | Clean output directory (delete all contents) |
 
 # Using the server
 
