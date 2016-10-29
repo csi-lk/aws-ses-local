@@ -15,6 +15,9 @@ chai.use(chaiHttp)
 
 describe('/POST email', () => {
   const toAddress = 'to@email.com'
+  const ccAddress = 'cc@email.com'
+  const bccAddress = 'bcc@email.com'
+  const replyToAddress = 'replyTo@email.com'
   const htmlEmail = '<p>HTML Email</p>'
   const textEmail = 'Text Email'
   const emailSubject = 'Email Subject 😊'
@@ -28,6 +31,9 @@ describe('/POST email', () => {
         'Message.Body.Html.Data': htmlEmail,
         'Message.Body.Text.Data': textEmail,
         'Message.Subject.Data': emailSubject,
+        'Destination.CcAddresses.member.1': ccAddress,
+        'Destination.BccAddresses.member.1': bccAddress,
+        'ReplyToAddresses.member.1': replyToAddress,
         Source: fromEmail,
       })
       .end((err, res) => {
@@ -36,7 +42,7 @@ describe('/POST email', () => {
         const path = response.valueWithPath('SendEmailResult.MessageId')
         expect(fs.readFileSync(path, 'utf8')).to.eq(htmlEmail)
         expect(fs.readFileSync(path.replace('body.html', 'body.txt'), 'utf8')).to.eq(textEmail)
-        expect(fs.readFileSync(path.replace('body.html', 'headers.txt'), 'utf8')).to.eq(`Subject: ${emailSubject}\nDestination: ${toAddress}\nSource: ${fromEmail}`)
+        expect(fs.readFileSync(path.replace('body.html', 'headers.txt'), 'utf8')).to.eq(`Subject: ${emailSubject}\nTo Address: ${toAddress}\nCc Address: ${ccAddress}\nBcc Address: ${bccAddress}\nReply To Address: ${replyToAddress}\nSource: ${fromEmail}`)
         done()
       })
   })

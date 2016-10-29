@@ -34,10 +34,9 @@ mkdir(path.join(options.outputDir))
 app.post('/', (req, res) => {
   const dateTime = new Date().toISOString()
   if (req.body.Action === 'SendEmail') {
-    console.log('Body is: ', req.body)
     const dateDir = `${options.outputDir}/${dateTime.slice(0, 10)}`
     const fullDir = `${dateDir}/${dateTime.slice(11, 22).replace(/:\s*/g, '.')}`
-    const headers = `Subject: ${req.body['Message.Subject.Data']}\nTo Address: ${req.body['Destination.ToAddresses.member.1']}\nCc Address: ${req.body['Destination.CcAddresses.member.1']}\nBcc Address: ${req.body['Destination.BccAddresses.member.1']}\nSource: ${req.body.Source}`
+    const headers = `Subject: ${req.body['Message.Subject.Data']}\nTo Address: ${req.body['Destination.ToAddresses.member.1']}\nCc Address: ${req.body['Destination.CcAddresses.member.1']}\nBcc Address: ${req.body['Destination.BccAddresses.member.1']}\nReply To Address: ${req.body['ReplyToAddresses.member.1']}\nSource: ${req.body.Source}`
     try {
       if (req.body.Source && req.body['Message.Subject.Data'] && req.body['Message.Body.Html.Data'] && req.body['Message.Body.Text.Data'] && req.body['Destination.ToAddresses.member.1']) {
         mkdir(path.join(dateDir))
