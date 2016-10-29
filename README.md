@@ -46,6 +46,12 @@ That's it! Now run `sendEmail()` with required params for eg.
 ```
 ses.sendEmail({
   Destination: { /* required */
+    BccAddresses: [
+      'STRING_VALUE'
+    ],
+    CcAddresses: [
+      'STRING_VALUE'
+    ],
     ToAddresses: [
       'STRING_VALUE'
     ]
@@ -63,5 +69,8 @@ ses.sendEmail({
       Data: 'STRING_VALUE' /* required */
     }
   },
-  Source: 'STRING_VALUE' /* required */
+  Source: 'STRING_VALUE', /* required */
+  ReplyToAddresses: [
+    'STRING_VALUE'
+  ]
 })
