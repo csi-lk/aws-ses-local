@@ -7,6 +7,22 @@
     "type": "git",
     "url": "git@github.com:Si1kIfY/aws-ses-local"
   },
+  "keywords": [
+    "amazon web services",
+    "simple email service",
+    "amazon simple email service local",
+    "amazon simple email service",
+    "aws ses",
+    "ses local",
+    "ses locally",
+    "aws",
+    "aws simple email service",
+    "amazon",
+    "aws ses local",
+    "run ses locally",
+    "run simple email service local",
+    "offline ses"
+  ],
   "devDependencies": {
     "babel-cli": "^6.16.0",
     "babel-core": "^6.13.2",
