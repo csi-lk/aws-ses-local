@@ -33,6 +33,7 @@
     "babel-preset-stage-0": "^6.16.0",
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
+    "coveralls": "^2.11.14",
     "eslint": "^3.2.2",
     "eslint-config-airbnb": "^10.0.0",
     "eslint-import-resolver-webpack": "^0.4.0",
@@ -58,6 +59,7 @@
   "scripts": {
     "lint": "eslint -c .eslintrc 'src/**/*.js'",
     "test": "IS_OFFLINE=true nyc --require babel-core/register mocha \\ $(find src -name '*spec.js')",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "prepublish": "babel src/ -d build --copy-files",
     "build": "babel -w src/ -d build -s --copy-files",
     "start": "node build/server.js",
