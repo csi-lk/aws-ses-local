@@ -41,7 +41,7 @@ app.post('/', (req, res) => {
       if (req.body.Source && req.body['Message.Subject.Data'] && req.body['Message.Body.Html.Data'] && req.body['Message.Body.Text.Data'] && req.body['Destination.ToAddresses.member.1']) {
         mkdir(path.join(dateDir))
         mkdir(path.join(fullDir))
-        log(`  📬  ${chalk.green('Email Recieved')}
+        log(`  📬  ${chalk.green('Email Received')}
           ${chalk.blue('From:')} ${req.body.Source}
           ${chalk.blue('To:')} ${req.body['Destination.ToAddresses.member.1']}
           ${chalk.blue('Subject:')} ${req.body['Message.Subject.Data']}
