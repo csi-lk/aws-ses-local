@@ -46,6 +46,42 @@ describe('/POST email', () => {
         done()
       })
   })
+  it('should succeed if only HTML body is missing', (done) => {
+    chai.request(server)
+      .post('/')
+      .send({
+        Action: 'SendEmail',
+        'Destination.ToAddresses.member.1': toAddress,
+        'Message.Body.Text.Data': textEmail,
+        'Message.Subject.Data': emailSubject,
+        'Destination.CcAddresses.member.1': ccAddress,
+        'Destination.BccAddresses.member.1': bccAddress,
+        'ReplyToAddresses.member.1': replyToAddress,
+        Source: fromEmail,
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(200)
+        done()
+      })
+  })
+  it('should succeed if only Text body is missing', (done) => {
+    chai.request(server)
+      .post('/')
+      .send({
+        Action: 'SendEmail',
+        'Destination.ToAddresses.member.1': toAddress,
+        'Message.Body.Html.Data': htmlEmail,
+        'Message.Subject.Data': emailSubject,
+        'Destination.CcAddresses.member.1': ccAddress,
+        'Destination.BccAddresses.member.1': bccAddress,
+        'ReplyToAddresses.member.1': replyToAddress,
+        Source: fromEmail,
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(200)
+        done()
+      })
+  })
   it('should fail if one param is not sent', (done) => {
     chai.request(server)
       .post('/')
