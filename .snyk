@@ -1,0 +1,13 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.7.1
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  'npm:brace-expansion:20170302':
+    - webpack > watchpack > chokidar > fsevents > node-pre-gyp > rimraf > glob > minimatch > brace-expansion:
+        reason: No upgrade path available
+        expires: '2017-06-18T23:23:18.022Z'
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:tough-cookie:20160722':
+    - webpack > watchpack > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
+        patched: '2017-05-19T23:21:46.932Z'
