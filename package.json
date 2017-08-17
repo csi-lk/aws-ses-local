@@ -62,7 +62,7 @@
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "prepublish": "babel src/ -d build --copy-files",
     "build": "babel -w src/ -d build -s --copy-files",
-    "start": "node build/server.js",
+    "start": "node ./build/server.js",
     "aws-ses-local": "./build/server.js"
   },
   "bin": {

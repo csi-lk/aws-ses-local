@@ -12,7 +12,7 @@ import options from './library/options'
 import rmdir from './library/rmdir'
 
 const app = express()
-const log = console.log
+const log = console.log //eslint-disable-line
 const successTemplate = fs.readFileSync(`${__dirname}/templates/success.xml`, { encoding: 'utf-8' })
 const errorTemplate = fs.readFileSync(`${__dirname}/templates/error.xml`, { encoding: 'utf-8' })
 
