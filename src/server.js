@@ -5,6 +5,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import path from 'path'
 import chalk from 'chalk'
+import fs from 'fs'
 // Import local libs
 import mkdir from './library/mkdir'
 import options from './library/options'
@@ -16,6 +17,8 @@ const log = console.log //eslint-disable-line
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+
+const errorTemplate = fs.readFileSync(`${__dirname}/templates/error.xml`, { encoding: 'utf-8' })
 
 log(`
 ${chalk.inverse('  AWS Simple Email Service Local 📪   ')}
@@ -34,8 +37,19 @@ app.post('/', (req, res) => {
   const dateDir = `${options.outputDir}/${dateTime.slice(0, 10)}`
   const fullDir = `${dateDir}/${dateTime.slice(11, 22).replace(/:\s*/g, '.')}`
 
-  if (req.body.Action === 'SendEmail') {
-    sendEmail(req, res, dateDir, fullDir, log)
+  try {
+    switch (req.body.Action) {
+      case 'SendEmail':
+        sendEmail(req, res, dateDir, fullDir, log)
+        break
+      default:
+        throw new Error(`Unsupported action ${req.body.Action}`)
+    }
+  } catch (err) {
+    log(`   ${chalk.red('Error Occured:')} ${err}`)
+    res.status(500).send(
+      errorTemplate.replace('{{code}}', 'MessageRejected').replace('{{message}}', err.message)
+    )
   }
 })
 

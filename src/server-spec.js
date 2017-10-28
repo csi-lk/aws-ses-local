@@ -13,7 +13,7 @@ chai.use(chaiHttp)
 //   })
 // })
 
-describe('/POST email', () => {
+describe('/POST SendEmail', () => {
   const toAddress = 'to@email.com'
   const ccAddress = 'cc@email.com'
   const bccAddress = 'bcc@email.com'
@@ -97,6 +97,21 @@ describe('/POST email', () => {
         const response = new xmldoc.XmlDocument(res.text)
         expect(response.valueWithPath('Code')).to.eq('MessageRejected')
         expect(response.valueWithPath('Message')).to.eq('One or more required fields was not sent')
+        done()
+      })
+  })
+})
+
+describe('/POST Unsupported action', () => {
+  it('should fail if the action is not unsupported', (done) => {
+    chai.request(server)
+      .post('/')
+      .send({ Action: 'SomeRandomAction' })
+      .end((err, res) => {
+        expect(res).to.have.status(500)
+        const response = new xmldoc.XmlDocument(res.text)
+        expect(response.valueWithPath('Code')).to.eq('MessageRejected')
+        expect(response.valueWithPath('Message')).to.eq('Unsupported action SomeRandomAction')
         done()
       })
   })
