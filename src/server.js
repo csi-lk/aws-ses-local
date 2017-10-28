@@ -11,6 +11,7 @@ import mkdir from './library/mkdir'
 import options from './library/options'
 import rmdir from './library/rmdir'
 import sendEmail from './send-email'
+import sendRawEmail from './send-raw-email'
 
 const app = express()
 const log = console.log //eslint-disable-line
@@ -41,6 +42,9 @@ app.post('/', (req, res) => {
     switch (req.body.Action) {
       case 'SendEmail':
         sendEmail(req, res, dateDir, fullDir, log)
+        break
+      case 'SendRawEmail':
+        sendRawEmail(req, res, dateDir, fullDir, log)
         break
       default:
         throw new Error(`Unsupported action ${req.body.Action}`)
