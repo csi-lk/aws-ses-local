@@ -12,16 +12,16 @@ chai.use(chaiHttp)
 //     chai.request(server)
 //   })
 // })
+const toAddress = 'to@email.com'
+const fromEmail = 'from@email.com'
 
-describe('/POST email', () => {
-  const toAddress = 'to@email.com'
+describe('/POST SendEmail', () => {
   const ccAddress = 'cc@email.com'
   const bccAddress = 'bcc@email.com'
   const replyToAddress = 'replyTo@email.com'
   const htmlEmail = '<p>HTML Email</p>'
   const textEmail = 'Text Email'
   const emailSubject = 'Email Subject 😊'
-  const fromEmail = 'from@email.com'
   it('should succeed if email has all params', (done) => {
     chai.request(server)
       .post('/')
@@ -97,6 +97,53 @@ describe('/POST email', () => {
         const response = new xmldoc.XmlDocument(res.text)
         expect(response.valueWithPath('Code')).to.eq('MessageRejected')
         expect(response.valueWithPath('Message')).to.eq('One or more required fields was not sent')
+        done()
+      })
+  })
+})
+
+describe('/POST Unsupported action', () => {
+  it('should fail if the action is not unsupported', (done) => {
+    chai.request(server)
+      .post('/')
+      .send({ Action: 'SomeRandomAction' })
+      .end((err, res) => {
+        expect(res).to.have.status(500)
+        const response = new xmldoc.XmlDocument(res.text)
+        expect(response.valueWithPath('Code')).to.eq('MessageRejected')
+        expect(response.valueWithPath('Message')).to.eq('Unsupported action SomeRandomAction')
+        done()
+      })
+  })
+})
+
+describe('/POST SendRawEmail', () => {
+  it('should write the decoded message to disk', (done) => {
+    chai.request(server)
+      .post('/')
+      .send({
+        Action: 'SendRawEmail',
+        'Destinations.member.1': toAddress,
+        'RawMessage.Data': Buffer.from('Some raw email data').toString('base64'),
+        Source: fromEmail,
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(200)
+        const response = new xmldoc.XmlDocument(res.text)
+        const path = response.valueWithPath('SendEmailResult.MessageId')
+        expect(fs.readFileSync(path, 'utf8')).to.eq('Some raw email data')
+        done()
+      })
+  })
+
+  it('should fail if the raw message data is not sent', (done) => {
+    chai.request(server)
+      .post('/')
+      .send({
+        Action: 'SendRawEmail',
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(500)
         done()
       })
   })
