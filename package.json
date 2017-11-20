@@ -1,6 +1,6 @@
 {
   "name": "aws-ses-local",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "Callum Silcock",
   "description": "Local Amazon Simple Email Service Server written in Node",
   "repository": {
