@@ -148,3 +148,14 @@ describe('/POST SendRawEmail', () => {
       })
   })
 })
+
+describe('/GET health-check', () => {
+  it('should return a `200` HTTP status code when the service is running', (done) => {
+    chai.request(server)
+      .get('/health-check')
+      .end((_, res) => {
+        expect(res).to.have.status(200)
+        done()
+      })
+  })
+})
