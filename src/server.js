@@ -57,6 +57,10 @@ app.post('/', (req, res) => {
   }
 })
 
+app.get('/health-check', (_, res) => {
+  res.sendStatus(200)
+})
+
 app.listen(options.port)
 
 export default app
