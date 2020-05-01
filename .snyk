@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.7.1
+version: v1.14.1
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   'npm:brace-expansion:20170302':
@@ -11,3 +11,34 @@ patch:
   'npm:tough-cookie:20160722':
     - webpack > watchpack > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
         patched: '2017-05-19T23:21:46.932Z'
+  SNYK-JS-LODASH-567746:
+    - babel-register > lodash:
+        patched: '2020-05-01T00:10:37.357Z'
+    - babel-register > babel-core > lodash:
+        patched: '2020-05-01T00:10:37.357Z'
+    - babel-register > babel-core > babel-types > lodash:
+        patched: '2020-05-01T00:10:37.357Z'
+    - babel-register > babel-core > babel-generator > lodash:
+        patched: '2020-05-01T00:10:37.357Z'
+    - babel-register > babel-core > babel-traverse > lodash:
+        patched: '2020-05-01T00:10:37.357Z'
+    - babel-register > babel-core > babel-template > lodash:
+        patched: '2020-05-01T00:10:37.357Z'
+    - babel-register > babel-core > babel-generator > babel-types > lodash:
+        patched: '2020-05-01T00:10:37.357Z'
+    - babel-register > babel-core > babel-traverse > babel-types > lodash:
+        patched: '2020-05-01T00:10:37.357Z'
+    - babel-register > babel-core > babel-template > babel-types > lodash:
+        patched: '2020-05-01T00:10:37.357Z'
+    - babel-register > babel-core > babel-template > babel-traverse > lodash:
+        patched: '2020-05-01T00:10:37.357Z'
+    - babel-register > babel-core > babel-helpers > babel-template > lodash:
+        patched: '2020-05-01T00:10:37.357Z'
+    - babel-register > babel-core > babel-template > babel-traverse > babel-types > lodash:
+        patched: '2020-05-01T00:10:37.357Z'
+    - babel-register > babel-core > babel-helpers > babel-template > babel-types > lodash:
+        patched: '2020-05-01T00:10:37.357Z'
+    - babel-register > babel-core > babel-helpers > babel-template > babel-traverse > lodash:
+        patched: '2020-05-01T00:10:37.357Z'
+    - babel-register > babel-core > babel-helpers > babel-template > babel-traverse > babel-types > lodash:
+        patched: '2020-05-01T00:10:37.357Z'
