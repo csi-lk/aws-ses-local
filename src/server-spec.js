@@ -148,3 +148,21 @@ describe('/POST SendRawEmail', () => {
       })
   })
 })
+
+
+describe('/POST GetAccountSendingEnabled', () => {
+  it('should return enabled set to true', (done) => {
+    chai.request(server)
+      .post('/')
+      .send({
+        Action: 'GetAccountSendingEnabled',
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(200)
+        const response = new xmldoc.XmlDocument(res.text)
+        const enabled = response.valueWithPath('GetAccountSendingEnabledResult.Enabled')
+        expect(enabled).to.be.true
+        done()
+      })
+  })
+})
