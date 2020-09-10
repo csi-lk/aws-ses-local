@@ -161,7 +161,7 @@ describe('/POST GetAccountSendingEnabled', () => {
         expect(res).to.have.status(200)
         const response = new xmldoc.XmlDocument(res.text)
         const enabled = response.valueWithPath('GetAccountSendingEnabledResult.Enabled')
-        expect(enabled).to.be.true
+        expect(enabled).to.equal('true')
         done()
       })
   })
