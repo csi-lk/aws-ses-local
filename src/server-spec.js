@@ -149,7 +149,6 @@ describe('/POST SendRawEmail', () => {
   })
 })
 
-
 describe('/POST GetAccountSendingEnabled', () => {
   it('should return enabled set to true', (done) => {
     chai.request(server)
