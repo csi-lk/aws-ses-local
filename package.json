@@ -1,5 +1,5 @@
 {
-  "name": "aws-ses-local",
+  "name": "@rohannagar/aws-ses-local",
   "version": "1.4.0",
   "author": "Callum Silcock",
   "contributors": ["Rohan Nagar"],
