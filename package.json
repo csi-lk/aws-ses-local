@@ -6,7 +6,7 @@
   "description": "Local Amazon Simple Email Service Server written in Node",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Si1kIfY/aws-ses-local"
+    "url": "git+https://github.com/RohanNagar/aws-ses-local.git"
   },
   "keywords": [
     "amazon web services",
