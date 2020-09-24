@@ -1,6 +1,6 @@
 {
   "name": "@rohannagar/aws-ses-local",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "author": "Callum Silcock",
   "contributors": ["Rohan Nagar"],
   "description": "Local Amazon Simple Email Service Server written in Node",
