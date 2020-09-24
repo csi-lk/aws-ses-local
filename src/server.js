@@ -20,6 +20,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 const errorTemplate = fs.readFileSync(`${__dirname}/templates/error.xml`, { encoding: 'utf-8' })
+const sendingEnabledTemplate = fs.readFileSync(`${__dirname}/templates/sending-enabled.xml`, { encoding: 'utf-8' })
 
 log(`
 ${chalk.inverse('  AWS Simple Email Service Local 📪   ')}
@@ -45,6 +46,10 @@ app.post('/', (req, res) => {
         break
       case 'SendRawEmail':
         sendRawEmail(req, res, dateDir, fullDir, log)
+        break
+      case 'GetAccountSendingEnabled':
+        log(`  ${chalk.green('GetAccountSendingEnabled request received')}`)
+        res.status(200).send(sendingEnabledTemplate)
         break
       default:
         throw new Error(`Unsupported action ${req.body.Action}`)
